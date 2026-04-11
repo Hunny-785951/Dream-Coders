@@ -5,6 +5,8 @@ import "../css/welcome.css";
 
 import memberImage1 from "../Resources/image1.jpeg";
 import memberImage2 from "../Resources/image2.jpeg";
+import memberImage3 from "../Resources/image3.jpeg";
+import humanicon from "../Resources/human-icon.avif";
 
 function Welcome() {
   // 1. State to track when the 3D cloud animation finishes
@@ -90,47 +92,95 @@ function Welcome() {
 
   const members = [
     {
-      name: "Mr. Himesh",
+      name: "Piyush Patel",
+      role: "Founder & Leader",
+      desc: "Crafting fluid, pixel-perfect experiences.",
+      img: memberImage2,
+      linkedin: "https://www.linkedin.com/in/piyush-patel1319/",
+      mail:"mailto:"
+    },
+    {
+      name: "Raj Soni",
+      role: "Team Lead",
+      desc: "Connecting top-tier talent globally.",
+      img: humanicon,
+      linkedin: "https://www.linkedin.com/in/raj-soni3300",
+      mail:"mailto:"
+    },
+    {
+      name: "Himesh Solanki",
       role: "Developer",
       desc: "Architecting the future of scalable code.",
-      img: memberImage1
+      img: memberImage1,
+      linkedin: "https://www.linkedin.com/in/himesh-s5847",
+      github:"https://github.com/Hunny-785951",
+      mail:"mailto:himeshs159587@gmail.com"
+    },
+    
+    {
+      name: "Neel Patel",
+      role: "Role",
+      desc: "Tag Quote",
+      img: humanicon,
+      linkedin: "https://www.linkedin.com/in/patel-neel-76767a250",
+      mail:"mailto:"
     },
     {
-      name: "Mr.  Piyush",
-      role: "Founder & Leader",
+      name: "Harsh Devre",
+      role: "Technical Lead",
       desc: "Crafting fluid, pixel-perfect experiences.",
-      img: memberImage2
+      img: memberImage3,
+      linkedin:"https://www.linkedin.com/in/er-harsh-d-b416a227b",
+      mail:"mailto:"
     },
     {
-      name: "David Smith",
-      role: "Co-Founder",
-      desc: "Connecting top-tier talent globally.",
-      img: memberImage1
+      name: "Mann Dosi",
+      role: "Core Team Member",
+      desc: "Tag Quote",
+      img: humanicon,
+      linkedin: "https://www.linkedin.com/in/mann-dosi-178767343",
+      mail:"mailto:",
     },
     {
-      name: "Mr. Himesh",
-      role: "Developer",
-      desc: "Architecting the future of scalable code.",
-      img: memberImage1
+      name: "Rutva Pandya",
+      role: "Technical & Event Management",
+      desc: "Tag Quote",
+      img: humanicon,
+      linkedin: "https://www.linkedin.com/in/rutva-pandya-214492341",
+      mail:"mailto:"
     },
     {
-      name: "Mr.  Piyush",
-      role: "Founder & Leader",
-      desc: "Crafting fluid, pixel-perfect experiences.",
-      img: memberImage2
+      name: "Jaimit Mokani",
+      role: "Role",
+      desc: "Tag Quote",
+      img: humanicon,
+      linkedin: "https://www.linkedin.com/in/jaimit-mokani-8872b43a3",
+      mail:"mailto:"
     },
     {
-      name: "David Smith",
-      role: "Co-Founder",
-      desc: "Connecting top-tier talent globally.",
-      img: memberImage1
+      name: "Tanvi Parmar",
+      role: "Designer",
+      desc: "Tag Quote",
+      img: humanicon,
+      linkedin: "https://www.linkedin.com/in/tanvi-parmar-3433883a8",
+      mail:"mailto:"
     },
     {
-      name: "Mr.  Piyush",
-      role: "Founder & Leader",
-      desc: "Crafting fluid, pixel-perfect experiences.",
-      img: memberImage2
-    }
+      name: "Mahi Patel",
+      role: "Designer",
+      desc: "Tag Quote",
+      img: humanicon,
+      linkedin: "https://www.linkedin.com/in/mahiii-patel-8659a4374/",
+      mail:"mailto:"
+    },
+    {
+      name: "Prince Patel",
+      role: "Social Media Manager",
+      desc: "Tag Quote",
+      img: humanicon,
+      linkedin: "https://www.linkedin.com/in/patelprince1/",
+      mail:"mailto:"
+    },
   ];
 
   return (
@@ -233,9 +283,9 @@ function Welcome() {
                     <p className="member-desc">{member.desc}</p>
                     
                     <div className="member-socials">
-                      <a href="#" aria-label="LinkedIn"><i className="fa fa-linkedin"></i></a>
-                      <a href="#" aria-label="GitHub"><i className="fa fa-github"></i></a>
-                      <a href="#" aria-label="Twitter"><i className="fa fa-twitter"></i></a>
+                      <a href={member.linkedin} aria-label="LinkedIn"><i className="fa fa-linkedin"></i></a>
+                      <a href={member.github} aria-label="GitHub"><i className="fa fa-github"></i></a>
+                      <a href={member.mail} aria-label="Email"><i className="fa fa-envelope"></i></a>
                     </div>
                   </div>
                 </article>

@@ -207,8 +207,6 @@ button {
 
 /* ===== SHARED SECTION STYLES ===== */
 section {
-  min-height: 100vh; 
-  /* 'svh' is the modern standard so mobile browser address bars don't cut it off */
   min-height: 100svh;
   position: relative;
   z-index: 1;
@@ -237,7 +235,8 @@ section {
   font-size: 1.2rem;
 }
 
-.card-container {
+/* ===== EVENT CARDS ===== */
+.events .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
@@ -245,7 +244,6 @@ section {
   max-width: 1200px;
 }
 
-/* ===== PREMIUM CARDS ===== */
 .card {
   background: rgba(20, 20, 28, 0.3);
   border: 1px solid var(--glass-border);
@@ -265,7 +263,6 @@ section {
   box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7), inset 0 0 40px rgba(0, 240, 255, 0.02);
 }
 
-/* ===== EVENT CARDS ===== */
 .img-wrapper {
   position: relative;
   height: 220px;
@@ -322,46 +319,51 @@ section {
   line-height: 1.6;
 }
 
-/* ===== COMMUNITY CARDS (Portrait Hover Reveal) ===== */
-
-/* --- ADDED: HORIZONTAL SCROLL OVERRIDE FOR COMMUNITY SECTION ONLY --- */
+/* ===== COMMUNITY SECTION (Horizontal Carousel) ===== */
 .community .card-container {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; 
-  padding-bottom: 2rem; 
+  padding: 2rem 0 4rem 0;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  
+  /* Hide scrollbars */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+
 .community .card-container::-webkit-scrollbar {
   display: none; 
 }
-.community .member-card {
-  flex: 0 0 320px;
-  scroll-snap-align: center;
-}
 
-
-/* ------------------------------------------------------------------ */
-
+/* 1. Base Card Definition */
 .member-card {
-  position: relative;
+  flex: 0 0 calc((100% - 4rem) / 3); /* Forces exactly 3 cards on desktop */
   height: 480px; 
+  position: relative;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--glass-border);
-  padding: 0; 
-  text-align: left;
   background-color: #050507; 
+  scroll-snap-align: center;
+  text-align: left;
+  
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              filter 0.4s ease, 
+              opacity 0.4s ease,
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+  will-change: transform, filter, opacity;
 }
 
+/* 2. Inner Image & Gradient Overlay */
 .member-img {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -378,12 +380,10 @@ section {
   flex-direction: column;
   justify-content: flex-end; 
   padding: 2rem;
-  text-align: left; 
   background: linear-gradient(to top, rgba(0,0,0, 1) 0%, rgba(0,0,0, 0.9) 25%, rgba(0,0,0, 0.4) 60%, transparent 100%);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- Default States (Hidden Elements for Hover Reveal) --- */
+/* 3. Text & Socials Defaults (Hidden until hover) */
 .member-name {
   font-family: var(--font-display);
   font-size: 1.8rem;
@@ -401,7 +401,6 @@ section {
   font-weight: 600;
   color: var(--accent-cyan);
   margin: 0;
-  transition: all 0.4s ease;
 }
 
 .member-desc {
@@ -427,36 +426,39 @@ section {
 .member-socials a {
   color: var(--text-primary);
   font-size: 1.3rem;
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease; 
+  display: inline-block;
 }
 
-.member-socials a:hover {
-  color: var(--accent-cyan);
+.member-socials a i { transition: all 0.3s ease; }
+
+/* 4. Sibling Dimming Logic */
+.community .card-container:has(.member-card:hover) .member-card:not(:hover) {
+  transform: scale(0.9);
+  filter: blur(5px) brightness(0.4);
+  opacity: 0.6;
 }
 
-/* --- THE HOVER MAGIC --- */
-.member-card:hover .member-img {
-  transform: scale(1.08); 
-}
-
-.member-card:hover .member-name {
-  max-height: 50px; 
+/* 5. Active Hover Card Logic */
+.community .card-container .member-card:hover {
+  transform: scale(1.05) translateY(-10px);
+  filter: blur(0px) brightness(1.1);
   opacity: 1;
-  margin-bottom: 0.2rem;
+  z-index: 10;
+  border-color: rgba(0, 240, 255, 0.5); 
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15);
 }
 
+.member-card:hover .member-img { transform: scale(1.08); }
+.member-card:hover .member-name { max-height: 50px; opacity: 1; margin-bottom: 0.2rem; }
+.member-card:hover .member-desc { max-height: 60px; opacity: 1; margin-top: 0.5rem; }
+.member-card:hover .member-socials { max-height: 40px; opacity: 1; margin-top: 1.5rem; }
 
-.member-card:hover .member-desc {
-  max-height: 60px;
-  opacity: 1;
-  margin-top: 0.5rem;
-}
-
-.member-card:hover .member-socials {
-  max-height: 40px;
-  opacity: 1;
-  margin-top: 1.5rem;
-}
+/* Social Icons Brand Colors */
+.member-socials a:hover { transform: translateY(-3px); }
+.member-socials a:hover .fa-linkedin { color: #0077b5; text-shadow: 0 0 12px rgba(0, 119, 181, 0.6); }
+.member-socials a:hover .fa-github { color: #ffffff; text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); }
+.member-socials a:hover .fa-twitter { color: #1da1f2; text-shadow: 0 0 12px rgba(29, 161, 242, 0.6); }
 
 /* ===== FOOTER ===== */
 footer {
@@ -494,16 +496,16 @@ footer {
 }
 
 .footer-icons a {
-  font-size: 1.5rem;
   color: var(--text-muted);
+  font-size: 1.5rem;
   transition: var(--transition-fluid);
   text-decoration: none;
 }
 
-.footer-icons a:hover {
-  color: var(--accent-cyan);
-  transform: translateY(-3px);
-}
+.footer-icons a:hover { transform: translateY(-3px); }
+.footer-icons a:hover .fa-linkedin { color: #0077b5; text-shadow: 0 0 12px rgba(0, 119, 181, 0.6); }
+.footer-icons a:hover .fa-github { color: #ffffff; text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); }
+.footer-icons a:hover .fa-instagram { color: #e1306c; text-shadow: 0 0 12px rgba(225, 48, 108, 0.6); }
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.05);
@@ -518,83 +520,20 @@ footer {
   color: var(--text-muted);
 }
 
-/* --- Social Icons --- */
-.member-socials {
-  display: flex;
-  gap: 1.2rem;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  margin: 0;
-  transition: all 0.4s ease;
-}
-
-.member-socials a {
-  color: var(--text-primary);
-  font-size: 1.3rem;
-  /* Apply transition to the link for the transform (lift) effect */
-  transition: transform 0.3s ease; 
-  display: inline-block;
-}
-
-.member-socials a i {
-  /* Apply transition directly to the icon for the smooth color fade */
-  transition: all 0.3s ease;
-}
-
-/* 1. The Lift Effect (Applies to all icons) */
-.member-socials a:hover {
-  transform: translateY(-3px);
-}
-
-/* 2. Brand-Specific Colors & Glow Effects */
-.member-socials a:hover .fa-linkedin {
-  color: #0077b5; /* Official LinkedIn Blue */
-  text-shadow: 0 0 12px rgba(0, 119, 181, 0.6);
-}
-
-.member-socials a:hover .fa-github {
-  color: #ffffff; /* GitHub White */
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-}
-
-.member-socials a:hover .fa-twitter {
-  color: #1da1f2; /* Official Twitter/X Blue */
-  text-shadow: 0 0 12px rgba(29, 161, 242, 0.6);
-}
-
-/* Footer Icons (Same Hover Effects as Member Socials)*/
-
-.footer-icons a {
-  color: var(--text-muted);
-  font-size: 1.5rem;
-  transition: var(--transition-fluid);
-  text-decoration: none;
-}
-
-.footer-icons a:hover .fa-linkedin {
-  color: #0077b5; /* Official LinkedIn Blue */
-  text-shadow: 0 0 12px rgba(0, 119, 181, 0.6);
-}
-
-.footer-icons a:hover .fa-github {
-  color: #ffffff; /* GitHub White */
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-}
-
-.footer-icons a:hover .fa-instagram {
-  color: #e1306c; /* Official Instagram Pink */
-  text-shadow: 0 0 12px rgba(225, 48, 108, 0.6);
-}
-
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
 @media (max-width: 968px) {
   .nav-links { display: none; } 
   .navbar { justify-content: center; }
+  
+  /* Show exactly 2 cards on tablets */
+  .member-card { flex: 0 0 calc((100% - 2rem) / 2); }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .welcome-text h1 { font-size: 3rem; }
   .section-header h2 { font-size: 2rem; }
   section { padding: 5rem 1rem; }
+  
+  /* Show exactly 1 card on mobile */
+  .member-card { flex: 0 0 100%; }
 }
