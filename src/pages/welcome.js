@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import Lenis from "lenis";
 import ParticleCloud from "../ParticleCloud";
 import "../css/welcome.css";
+import brandLogo from "../Resources/logo.png";
+import MissionVision from "./MissionVision";
 
 import memberImage1 from "../Resources/image1.jpeg";
 import memberImage2 from "../Resources/image2.jpeg";
@@ -87,6 +89,27 @@ function Welcome() {
       img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop",
       desc: "Deep dive into neural networks and machine learning.",
       date: "DEC 05, 2026"
+    }
+  ];
+
+  const upcomingEvents = [
+    {
+      name: "Autonomous Hacks '26", 
+      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
+      desc: "Join our flagship 48-hour hackathon. Build innovative solutions, pitch to judges, and win exclusive tech prizes.",
+      date: "MAY 15, 2026"
+    },
+    {
+      name: "React & UI/UX Masterclass",
+      img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+      desc: "Learn to build fluid, glassmorphism interfaces and high-performance components from industry experts.",
+      date: "JUN 02, 2026"
+    },
+    {
+      name: "Open Source Summit",
+      img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop",
+      desc: "Dive deep into open-source contributions. Learn how to navigate large codebases and make your first major PR.",
+      date: "JUL 10, 2026"
     }
   ];
 
@@ -187,9 +210,17 @@ function Welcome() {
     <div className="app">
       <div className="ambient-mesh"></div>
 
+      <head>
+        <img src={brandLogo} alt="Dream Coders Logo" className="brand-logo" />
+        <title>Dream Coders - Welcome</title>
+      </head>
+
       <header className="navbar-container">
         <nav className="navbar">
+        
+          
           <div className="brand">
+            <img src={brandLogo} alt="Dream Coders Logo" className="brand-logo" />
             <h2>DREAM <span>CODERS</span></h2>
           </div>
           <ul className="nav-links">
@@ -228,17 +259,44 @@ function Welcome() {
                 <h1>Dream<br/><span>Coders</span></h1>
                 <p>Turning Dreams Into Impactful Code.</p>
                 <div className="hero-actions">
-                  <button className="btn-primary">Explore Ecosystem</button>
-                  <button className="btn-secondary">Join Community</button>
+                  <button className="btn-primary" onClick={() => document.getElementById("community").scrollIntoView({ behavior: "smooth" })}>Explore Ecosystem</button>
+                  <button className="btn-secondary" onClick={() => document.getElementById("events").scrollIntoView({ behavior: "smooth" })}>Join Community</button>
                 </div>
              </div>
           </div>
         </section>
 
+        <MissionVision />
+
+        {/* --- Upcoming Events --- */}
+        <section className="upcomingEvents">
+          <div className="section-header">
+            <h2>Upcoming Events</h2>
+            <p>Discover our next wave of innovation and learning.</p>
+          </div>
+          <div className="events-preview">
+            {upcomingEvents.map((upcomingEvent, index) => (
+              <article className="card event-card" key={index}>
+                <div className="img-wrapper">
+                  <img src={upcomingEvent.img} alt={`Promotional image for ${upcomingEvent.name}`} loading="lazy"/>
+                  <span className="event-date">{upcomingEvent.date}</span>
+                </div>
+                <div className="card-content">
+                  <h3>{upcomingEvent.name}</h3>
+                  <p>{upcomingEvent.desc}</p>
+                  <br/> 
+                  <button className="btn-upcoming">Register Now</button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+
         {/* --- EVENTS SECTION --- */}
         <section id="events" className="events">
           <div className="section-header">
-            <h2>Upcoming Events</h2>
+            <h2>Events</h2>
             <p>Immerse yourself in our cutting-edge sessions.</p>
           </div>
           <div className="card-container">

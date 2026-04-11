@@ -12,7 +12,7 @@
   --accent-blue:    #0057ff;
   --accent-purple:  #8a2be2;
   --text-primary:   #ffffff;
-  --text-secondary: #a1a1aa;
+  --text-secondary: #ffffff;
   --text-muted:     #71717a;
   
   --font-display:   'Orbitron', sans-serif;
@@ -88,6 +88,25 @@ body {
   padding: 0.8rem 2rem;
   box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
   transition: var(--transition-fluid);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem; /* Controls the space between the logo and the text */
+  text-decoration: none;
+}
+
+.brand-logo {
+  height: 32px; /* Adjust this height based on your specific logo's proportions */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Optional: Slight hover bounce on the logo */
+.brand:hover .brand-logo {
+  transform: scale(1.05);
 }
 
 .brand h2 {
@@ -244,6 +263,33 @@ section {
   max-width: 1200px;
 }
 
+.upcomingEvents .events-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.btn-upcoming {
+  background: var(--accent-blue);
+  color: var(--bg-deep);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: var(--transition-fluid);
+}
+
+.btn-upcoming:hover {
+  transform: translateY(-3px);
+  color:#ffffff;
+  box-shadow: 0 10px 25px rgba(0, 87, 255, 0.2);
+}
+
 .card {
   background: rgba(20, 20, 28, 0.3);
   border: 1px solid var(--glass-border);
@@ -282,7 +328,7 @@ section {
   transform: scale(1.05);
 }
 
-.event-date {
+ .event-date {
   position: absolute;
   top: 1.2rem;
   right: 1.2rem;
@@ -458,7 +504,7 @@ section {
 .member-socials a:hover { transform: translateY(-3px); }
 .member-socials a:hover .fa-linkedin { color: #0077b5; text-shadow: 0 0 12px rgba(0, 119, 181, 0.6); }
 .member-socials a:hover .fa-github { color: #ffffff; text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); }
-.member-socials a:hover .fa-twitter { color: #1da1f2; text-shadow: 0 0 12px rgba(29, 161, 242, 0.6); }
+.member-socials a:hover .fa-envelope { color: #ea4335; text-shadow: 0 0 12px rgba(242, 29, 107, 0.6); }
 
 /* ===== FOOTER ===== */
 footer {

@@ -1,0 +1,171 @@
+/* ===== MISSION & VISION SECTION ===== */
+.purpose-section {
+  position: relative;
+  padding: 8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* --- Header Layout --- */
+.purpose-header {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 4rem;
+}
+
+.purpose-badge {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  background: rgba(138, 43, 226, 0.1); /* Subtle purple background */
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  color: #a270ff; /* Muted purple text */
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.purpose-header h2 {
+  font-family: var(--font-display, 'Orbitron', sans-serif);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.purpose-header h2 span {
+  /* Cyan to Blue gradient for "Vision" */
+  background: linear-gradient(to right, #00f0ff, #0057ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.purpose-header p {
+  color: #a1a1aa; /* Text secondary */
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* --- Card Grid --- */
+.purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.purpose-card {
+  position: relative;
+  background: #15151e; /* Deep dark background */
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s ease, background 0.4s ease;
+  overflow: hidden;
+}
+
+/* The Glowing Top Border (Hidden by default, shows on hover) */
+.card-glow-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #00f0ff, #8a2be2);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.purpose-card:hover {
+  transform: translateY(-8px);
+  background: #1a1a24;
+}
+
+.purpose-card:hover .card-glow-border {
+  opacity: 1;
+}
+
+/* Card Inner Content */
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0057ff, #00f0ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.icon-wrapper i {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.purpose-card h3 {
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.purpose-card p {
+  color: #8f8f9d;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* --- Footer Tags --- */
+.purpose-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tag-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  color: #b5b5c3;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tag-pill i {
+  color: #8a2be2; /* Purple accent for the tag icons */
+}
+
+.tag-pill:hover {
+  background: rgba(138, 43, 226, 0.1);
+  border-color: rgba(138, 43, 226, 0.4);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .purpose-section {
+    padding: 5rem 1rem;
+  }
+  .purpose-header h2 {
+    font-size: 2.5rem;
+  }
+}
