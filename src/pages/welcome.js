@@ -259,8 +259,8 @@ function Welcome() {
                 <h1>Dream<br/><span>Coders</span></h1>
                 <p>Turning Dreams Into Impactful Code.</p>
                 <div className="hero-actions">
-                  <button className="btn-primary" onClick={() => document.getElementById("community").scrollIntoView({ behavior: "smooth" })}>Explore Ecosystem</button>
-                  <button className="btn-secondary" onClick={() => document.getElementById("events").scrollIntoView({ behavior: "smooth" })}>Join Community</button>
+                  <button className="btn-primary" onClick={() => document.getElementById("community").scrollIntoView({ behavior: "smooth" })}>Explore Community</button>
+                  <button className="btn-secondary" onClick={() => document.getElementById("upcomingEvents").scrollIntoView({ behavior: "smooth" })}>Upcoming Events</button>
                 </div>
              </div>
           </div>
@@ -269,7 +269,7 @@ function Welcome() {
         <MissionVision />
 
         {/* --- Upcoming Events --- */}
-        <section className="upcomingEvents">
+        <section id="upcomingEvents" className="upcomingEvents">
           <div className="section-header">
             <h2>Upcoming Events</h2>
             <p>Discover our next wave of innovation and learning.</p>
