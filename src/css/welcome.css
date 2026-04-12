@@ -2,18 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;600&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
-/* ===== CSS VARIABLES (Premium Dark Palette) ===== */
+/* ===== CSS VARIABLES (Synthwave Dark Palette) ===== */
 :root {
   --bg-deep:        #080d1a; 
   --bg-surface:     #101626; 
   --glass-bg:       rgba(16, 22, 38, 0.4);
   --glass-border:   rgba(255, 255, 255, 0.06);
-  --accent-cyan:    #00f0ff;
-  --accent-blue:    #0057ff;
-  --accent-purple:  #8a2be2;
+  
+  /* The New Unified Brand Colors */
+  --accent-primary: #FF2A6D;
+  --accent-primary-rgb: 255, 42, 109; /* Added for dynamic transparent glows! */
+  
   --text-primary:   #ffffff;
-  --text-secondary: #ffffff;
-  --text-muted:     #71717a;
+  --text-secondary: #e2e8f0;
+  --text-muted:     #94a3b8;
   
   --font-display:   'Orbitron', sans-serif;
   --font-heading:   'Space Grotesk', sans-serif;
@@ -29,9 +31,7 @@
   box-sizing: border-box;
 }
 
-html { 
-  scroll-behavior: smooth; 
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
@@ -46,7 +46,7 @@ body {
   position: relative;
   background-color: var(--bg-deep);
   background-image: 
-    radial-gradient(circle at 50% -20%, rgba(0, 87, 255, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 50% -20%, rgba(255, 42, 109, 0.1) 0%, transparent 60%),
     url("data:image/svg+xml,%3Csvg width='150' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='25' cy='25' r='1' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='100' cy='80' r='0.5' fill='rgba(255,255,255,0.15)'/%3E%3Ccircle cx='60' cy='130' r='1.5' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
   background-size: 100% 100%, 200px 200px;
 }
@@ -57,7 +57,7 @@ body {
   z-index: 0;
   pointer-events: none;
   background: 
-    radial-gradient(circle at 15% 50%, rgba(0, 87, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 15% 50%, rgba(255, 42, 109, 0.03) 0%, transparent 50%),
     radial-gradient(circle at 85% 30%, rgba(138, 43, 226, 0.03) 0%, transparent 50%);
   filter: blur(80px);
 }
@@ -93,18 +93,17 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.8rem; /* Controls the space between the logo and the text */
+  gap: 0.8rem;
   text-decoration: none;
 }
 
 .brand-logo {
-  height: 32px; /* Adjust this height based on your specific logo's proportions */
+  height: 32px;
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
 
-/* Optional: Slight hover bounce on the logo */
 .brand:hover .brand-logo {
   transform: scale(1.05);
 }
@@ -118,7 +117,7 @@ body {
 }
 
 .brand span {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
 }
 
 .nav-links {
@@ -152,9 +151,9 @@ body {
   display: inline-block;
   padding: 0.4rem 1.2rem;
   border-radius: 50px;
-  background: rgba(0, 240, 255, 0.05);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  color: var(--accent-cyan);
+  background: rgba(var(--accent-primary-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.4);
+  color: var(--accent-primary);
   font-family: var(--font-heading);
   font-size: 0.85rem;
   letter-spacing: 0.15em;
@@ -172,14 +171,15 @@ body {
 }
 
 .welcome-text h1 span {
-  background: linear-gradient(to right, var(--text-primary), var(--accent-cyan));
+  /* Creating a smooth hot-pink gradient */
+  background: linear-gradient(to right, #ff7eb3, var(--accent-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .welcome-text p {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 2.5rem;
@@ -204,24 +204,25 @@ button {
 }
 
 .btn-primary {
-  background: var(--accent-cyan);
-  color: var(--bg-deep);
+  background: var(--accent-primary);
+  color: #ffffff; /* Fixed missing text color */
   border: none;
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
+  box-shadow: 0 10px 25px rgba(var(--accent-primary-rgb), 0.4);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--accent-cyan);
-  border: 1px solid var(--accent-cyan);
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 240, 255, 0.1);
+  background: rgba(var(--accent-primary-rgb), 0.15);
+  transform: translateY(-3px);
 }
 
 /* ===== SHARED SECTION STYLES ===== */
@@ -255,14 +256,7 @@ section {
 }
 
 /* ===== EVENT CARDS ===== */
-.events .card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  width: 100%;
-  max-width: 1200px;
-}
-
+.events .card-container,
 .upcomingEvents .events-preview {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -272,9 +266,9 @@ section {
 }
 
 .btn-upcoming {
-  background: var(--accent-blue);
-  color: var(--bg-deep);
-  border: none;
+  background: transparent;
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
   padding: 0.8rem 2rem;
   border-radius: 8px;
   font-family: var(--font-heading);
@@ -282,12 +276,15 @@ section {
   font-size: 0.9rem;
   letter-spacing: 0.05em;
   transition: var(--transition-fluid);
+  width: 100%;
+  margin-top: auto;
 }
 
 .btn-upcoming:hover {
+  background: var(--accent-primary);
+  color: #ffffff;
   transform: translateY(-3px);
-  color:#ffffff;
-  box-shadow: 0 10px 25px rgba(0, 87, 255, 0.2);
+  box-shadow: 0 10px 25px rgba(var(--accent-primary-rgb), 0.3);
 }
 
 .card {
@@ -305,8 +302,8 @@ section {
 
 .card:hover {
   transform: translateY(-8px);
-  border-color: rgba(0, 240, 255, 0.2);
-  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7), inset 0 0 40px rgba(0, 240, 255, 0.02);
+  border-color: rgba(var(--accent-primary-rgb), 0.3);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7), inset 0 0 40px rgba(var(--accent-primary-rgb), 0.08);
 }
 
 .img-wrapper {
@@ -328,7 +325,7 @@ section {
   transform: scale(1.05);
 }
 
- .event-date {
+.event-date {
   position: absolute;
   top: 1.2rem;
   right: 1.2rem;
@@ -339,7 +336,7 @@ section {
   border: 1px solid rgba(255,255,255,0.1);
   font-family: var(--font-display);
   font-size: 0.8rem;
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
   letter-spacing: 0.05em;
 }
 
@@ -363,6 +360,7 @@ section {
   color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 /* ===== COMMUNITY SECTION (Horizontal Carousel) ===== */
@@ -376,8 +374,6 @@ section {
   gap: 2rem;
   width: 100%;
   max-width: 1200px;
-  
-  /* Hide scrollbars */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -386,9 +382,8 @@ section {
   display: none; 
 }
 
-/* 1. Base Card Definition */
 .member-card {
-  flex: 0 0 calc((100% - 4rem) / 3); /* Forces exactly 3 cards on desktop */
+  flex: 0 0 calc((100% - 4rem) / 3); 
   height: 480px; 
   position: relative;
   border-radius: 16px;
@@ -397,7 +392,6 @@ section {
   background-color: #050507; 
   scroll-snap-align: center;
   text-align: left;
-  
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
               filter 0.4s ease, 
               opacity 0.4s ease,
@@ -406,7 +400,6 @@ section {
   will-change: transform, filter, opacity;
 }
 
-/* 2. Inner Image & Gradient Overlay */
 .member-img {
   position: absolute;
   inset: 0;
@@ -429,7 +422,6 @@ section {
   background: linear-gradient(to top, rgba(0,0,0, 1) 0%, rgba(0,0,0, 0.9) 25%, rgba(0,0,0, 0.4) 60%, transparent 100%);
 }
 
-/* 3. Text & Socials Defaults (Hidden until hover) */
 .member-name {
   font-family: var(--font-display);
   font-size: 1.8rem;
@@ -445,7 +437,7 @@ section {
   font-family: var(--font-heading);
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
   margin: 0;
 }
 
@@ -478,21 +470,20 @@ section {
 
 .member-socials a i { transition: all 0.3s ease; }
 
-/* 4. Sibling Dimming Logic */
 .community .card-container:has(.member-card:hover) .member-card:not(:hover) {
   transform: scale(0.9);
   filter: blur(5px) brightness(0.4);
   opacity: 0.6;
 }
 
-/* 5. Active Hover Card Logic */
+/* Card Hover unified to Magenta Glow */
 .community .card-container .member-card:hover {
   transform: scale(1.05) translateY(-10px);
   filter: blur(0px) brightness(1.1);
   opacity: 1;
   z-index: 10;
-  border-color: rgba(0, 240, 255, 0.5); 
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15);
+  border-color: rgba(var(--accent-primary-rgb), 0.5); 
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(var(--accent-primary-rgb), 0.2);
 }
 
 .member-card:hover .member-img { transform: scale(1.08); }
@@ -500,11 +491,10 @@ section {
 .member-card:hover .member-desc { max-height: 60px; opacity: 1; margin-top: 0.5rem; }
 .member-card:hover .member-socials { max-height: 40px; opacity: 1; margin-top: 1.5rem; }
 
-/* Social Icons Brand Colors */
 .member-socials a:hover { transform: translateY(-3px); }
 .member-socials a:hover .fa-linkedin { color: #0077b5; text-shadow: 0 0 12px rgba(0, 119, 181, 0.6); }
 .member-socials a:hover .fa-github { color: #ffffff; text-shadow: 0 0 12px rgba(255, 255, 255, 0.6); }
-.member-socials a:hover .fa-envelope { color: #ea4335; text-shadow: 0 0 12px rgba(242, 29, 107, 0.6); }
+.member-socials a:hover .fa-envelope { color: var(--accent-primary); text-shadow: 0 0 12px rgba(var(--accent-primary-rgb), 0.6); }
 
 /* ===== FOOTER ===== */
 footer {
@@ -526,7 +516,7 @@ footer {
 }
 
 .footer-content h3 span {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
 }
 
 .footer-content p {
@@ -570,8 +560,6 @@ footer {
 @media (max-width: 968px) {
   .nav-links { display: none; } 
   .navbar { justify-content: center; }
-  
-  /* Show exactly 2 cards on tablets */
   .member-card { flex: 0 0 calc((100% - 2rem) / 2); }
 }
 
@@ -579,7 +567,5 @@ footer {
   .welcome-text h1 { font-size: 3rem; }
   .section-header h2 { font-size: 2rem; }
   section { padding: 5rem 1rem; }
-  
-  /* Show exactly 1 card on mobile */
   .member-card { flex: 0 0 100%; }
 }

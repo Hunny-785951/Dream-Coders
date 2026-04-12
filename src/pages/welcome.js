@@ -4,6 +4,8 @@ import ParticleCloud from "../ParticleCloud";
 import "../css/welcome.css";
 import brandLogo from "../Resources/logo.png";
 import MissionVision from "./MissionVision";
+import Hero from "./Hero";
+import Contact from "./Contact";
 
 import memberImage1 from "../Resources/image1.jpeg";
 import memberImage2 from "../Resources/image2.jpeg";
@@ -265,92 +267,117 @@ function Welcome() {
              </div>
           </div>
         </section>
-
-        <MissionVision />
-
-        {/* --- Upcoming Events --- */}
-        <section id="upcomingEvents" className="upcomingEvents">
-          <div className="section-header">
-            <h2>Upcoming Events</h2>
-            <p>Discover our next wave of innovation and learning.</p>
-          </div>
-          <div className="events-preview">
-            {upcomingEvents.map((upcomingEvent, index) => (
-              <article className="card event-card" key={index}>
-                <div className="img-wrapper">
-                  <img src={upcomingEvent.img} alt={`Promotional image for ${upcomingEvent.name}`} loading="lazy"/>
-                  <span className="event-date">{upcomingEvent.date}</span>
-                </div>
-                <div className="card-content">
-                  <h3>{upcomingEvent.name}</h3>
-                  <p>{upcomingEvent.desc}</p>
-                  <br/> 
-                  <button className="btn-upcoming">Register Now</button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-
-        {/* --- EVENTS SECTION --- */}
-        <section id="events" className="events">
-          <div className="section-header">
-            <h2>Events</h2>
-            <p>Immerse yourself in our cutting-edge sessions.</p>
-          </div>
-          <div className="card-container">
-            {events.map((event, index) => (
-              <article className="card event-card" key={index}>
-                <div className="img-wrapper">
-                  <img src={event.img} alt={`Promotional image for ${event.name}`} loading="lazy"/>
-                  <span className="event-date">{event.date}</span>
-                </div>
-                <div className="card-content">
-                  <h3>{event.name}</h3>
-                  <p>{event.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* --- COMMUNITY SECTION --- */}
-        <section id="community" className="community">
-          <div className="section-header">
-            <h2>Members</h2>
-            <p>Meet the minds behind the architecture.</p>
-          </div>
+        
+         <Hero />
+        {/* ========================================== */}
+        {/* THE STICKY COSMIC ZONE                     */}
+        {/* ========================================== */}
+        <div className="cosmic-zone" style={{ position: 'relative' }}>
           
-          <div className="card-container" ref={scrollRef} onScroll={handleScroll}>
-            {members.map((member, index) => {
-              
-              // Calculate 3D positioning classes
-              let coverflowClass = "";
-              if (index === activeIndex) coverflowClass = "active";
-              else if (index < activeIndex) coverflowClass = "prev";
-              else if (index > activeIndex) coverflowClass = "next";
-
-              return (
-                <article className={`card member-card ${coverflowClass}`} key={index}>
-                  <img src={member.img} alt={member.name} className="member-img"/>
-                  
-                  <div className="member-content">
-                    <h3 className="member-name">{member.name}</h3>
-                    <h4 className="member-role">{member.role}</h4>
-                    <p className="member-desc">{member.desc}</p>
-                    
-                    <div className="member-socials">
-                      <a href={member.linkedin} aria-label="LinkedIn"><i className="fa fa-linkedin"></i></a>
-                      <a href={member.github} aria-label="GitHub"><i className="fa fa-github"></i></a>
-                      <a href={member.mail} aria-label="Email"><i className="fa fa-envelope"></i></a>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+          {/* 1. The Sticky Background (Only rendered ONCE) */}
+          <div style={{ position: 'sticky', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 0, overflow: 'hidden' }}>
+            <div className="hero-bg-layer">
+              <svg className="bg-waves" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="baseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#0f142b" />
+                    <stop offset="50%" stopColor="#1e112a" />
+                    <stop offset="100%" stopColor="#30143d" />
+                  </linearGradient>
+                  <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgba(80, 30, 130, 0.4)" />
+                    <stop offset="100%" stopColor="rgba(40, 15, 60, 0.1)" />
+                  </linearGradient>
+                </defs>
+               </svg>
+              <div className="constellation-overlay"></div>
+            </div>
           </div>
-        </section>
+
+          {/* 2. The Content Layer (Scrolls over the sticky background) */}
+          <div style={{ position: 'relative', zIndex: 1, marginTop: '-100vh' }}>
+            
+            <MissionVision />
+
+            <section id="upcomingEvents" className="upcomingEvents">
+              <div className="section-header">
+                <h2>Upcoming Events</h2>
+                <p>Discover our next wave of innovation and learning.</p>
+              </div>
+              <div className="events-preview">
+                {upcomingEvents.map((upcomingEvent, index) => (
+                  <article className="card event-card" key={index}>
+                    <div className="img-wrapper">
+                      <img src={upcomingEvent.img} alt={`Promotional image for ${upcomingEvent.name}`} loading="lazy"/>
+                      <span className="event-date">{upcomingEvent.date}</span>
+                    </div>
+                    <div className="card-content">
+                      <h3>{upcomingEvent.name}</h3>
+                      <p>{upcomingEvent.desc}</p>
+                      <br/> 
+                      <button className="btn-upcoming">Register Now</button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section id="events" className="events">
+              <div className="section-header">
+                <h2>Events</h2>
+                <p>Immerse yourself in our cutting-edge sessions.</p>
+              </div>
+              <div className="card-container">
+                {events.map((event, index) => (
+                  <article className="card event-card" key={index}>
+                    <div className="img-wrapper">
+                      <img src={event.img} alt={`Promotional image for ${event.name}`} loading="lazy"/>
+                      <span className="event-date">{event.date}</span>
+                    </div>
+                    <div className="card-content">
+                      <h3>{event.name}</h3>
+                      <p>{event.desc}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section id="community" className="community">
+              <div className="section-header">
+                <h2>Members</h2>
+                <p>Meet the minds behind the architecture.</p>
+              </div>
+              <div className="card-container" ref={scrollRef} onScroll={handleScroll}>
+                {members.map((member, index) => {
+                  let coverflowClass = "";
+                  if (index === activeIndex) coverflowClass = "active";
+                  else if (index < activeIndex) coverflowClass = "prev";
+                  else if (index > activeIndex) coverflowClass = "next";
+
+                  return (
+                    <article className={`card member-card ${coverflowClass}`} key={index}>
+                      <img src={member.img} alt={member.name} className="member-img"/>
+                      <div className="member-content">
+                        <h3 className="member-name">{member.name}</h3>
+                        <h4 className="member-role">{member.role}</h4>
+                        <p className="member-desc">{member.desc}</p>
+                        <div className="member-socials">
+                          <a href={member.linkedin} aria-label="LinkedIn"><i className="fa fa-linkedin"></i></a>
+                          <a href={member.github} aria-label="GitHub"><i className="fa fa-github"></i></a>
+                          <a href={member.mail} aria-label="Email"><i className="fa fa-envelope"></i></a>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+            
+            <Contact />
+
+          </div>
+        </div>
       </main>
 
       {/* --- FOOTER --- */}

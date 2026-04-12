@@ -1,0 +1,346 @@
+/* ========================================= */
+/* ===== DEV HERO SECTION & LAYOUT ===== */
+/* ========================================= */
+
+.dev-hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 4rem 2rem;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.dev-hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  gap: 4rem;
+}
+
+.dev-hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* ========================================= */
+/* --- 3D LAYERED BACKGROUND & ANIMATIONS ---*/
+/* ========================================= */
+
+.hero-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 1. The SVG Container */
+.bg-waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* 4. The Stars (Drifting Animation) */
+.constellation-overlay {
+  position: absolute;
+  inset: -100px; /* Stretch slightly larger than screen to hide edges */
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ccircle cx='50' cy='50' r='1.5' fill='rgba(255,255,255,0.2)'/%3E%3Ccircle cx='180' cy='140' r='2' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='90' cy='220' r='1' fill='rgba(255,255,255,0.15)'/%3E%3Ccircle cx='320' cy='90' r='1.5' fill='rgba(255,255,255,0.2)'/%3E%3Ccircle cx='260' cy='280' r='2' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='380' cy='350' r='1' fill='rgba(255,255,255,0.15)'/%3E%3Cpath d='M50 50 L180 140 L90 220' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3Cpath d='M180 140 L320 90 L260 280' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3Cpath d='M260 280 L380 350' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+  background-size: 400px 400px;
+  background-repeat: repeat;
+  opacity: 0.8;
+  pointer-events: none; 
+  animation: starDrift 60s linear infinite; 
+}
+
+/* KEYFRAMES FOR BACKGROUND */
+@keyframes waveFlow {
+  0% { transform: scale(1.2) translate(40px, 15px); }
+  100% { transform: scale(1.2) translate(-40px, -15px); }
+}
+
+@keyframes starDrift {
+  from { background-position: 0 0; }
+  to { background-position: 400px 400px; }
+}
+
+/* ========================================= */
+/* --- TYPOGRAPHY & BADGES --- */
+/* ========================================= */
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  color: #a1a1aa;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #12de9a;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(14, 232, 159, 0.8);
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #ff7eb3, #FF2A6D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  color: #e1e1e1;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 90%;
+}
+
+/* ========================================= */
+/* --- CTA BUTTONS --- */
+/* ========================================= */
+
+.hero-cta-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.btn-gradient-primary {
+  background: linear-gradient(90deg, #8b5cf6, #0ea5e9);
+  color: white;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+}
+
+.btn-glass-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-glass-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================= */
+/* --- STATS ROW --- */
+/* ========================================= */
+
+.hero-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.stat-block h3 {
+  color: #FF2A6D; 
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.stat-block h3 span {
+  color: #FF2A6D;
+}
+
+.stat-block p {
+  color:#ff7eb3;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ========================================= */
+/* --- RIGHT COLUMN: IDE VISUAL --- */
+/* ========================================= */
+
+.dev-hero-visual {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ide-window {
+  width: 100%;
+  max-width: 500px;
+  background: #0d1117; 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.05);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.ide-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #161b22;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mac-controls {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.mac-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.mac-dot.close { background: #ff5f56; }
+.mac-dot.minimize { background: #ffbd2e; }
+.mac-dot.expand { background: #27c93f; }
+
+.ide-title {
+  flex: 1;
+  text-align: center;
+  color: #8b949e;
+  font-size: 0.85rem;
+  font-family: monospace;
+  margin-right: 48px; 
+}
+
+.ide-body {
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.ide-body pre {
+  margin: 0;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #c9d1d9; 
+}
+
+/* Syntax Highlighting */
+.syntax-keyword { color: #ff7b72; } 
+.syntax-class { color: #d2a8ff; }   
+.syntax-method { color: #d2a8ff; }  
+.syntax-arg { color: #79c0ff; }     
+.syntax-string { color: #a5d6ff; }  
+
+/* ========================================= */
+/* --- FLOATING BADGES --- */
+/* ========================================= */
+
+.floating-badge {
+  position: absolute;
+  background: rgba(20, 20, 30, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  color: #e4e4e7;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 3;
+}
+
+.badge-top-right {
+  top: -20px;
+  right: 0;
+  animation: floatBadge 6s ease-in-out infinite;
+}
+
+.badge-bottom-left {
+  bottom: 20px;
+  left: -30px;
+  animation: floatBadge 6s ease-in-out infinite reverse;
+}
+
+@keyframes floatBadge {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ========================================= */
+/* --- RESPONSIVENESS --- */
+/* ========================================= */
+
+@media (max-width: 968px) {
+  .dev-hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .dev-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-stats-row {
+    justify-content: center;
+  }
+  
+  .badge-bottom-left {
+    left: 20px;
+  }
+}
