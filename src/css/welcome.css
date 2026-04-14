@@ -161,69 +161,6 @@ body {
   margin-bottom: 2rem;
 }
 
-.welcome-text h1 {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 6vw, 6rem);
-  font-weight: 900;
-  line-height: 1.05;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
-}
-
-.welcome-text h1 span {
-  /* Creating a smooth hot-pink gradient */
-  background: linear-gradient(to right, #ff7eb3, var(--accent-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.welcome-text p {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
-  font-weight: 300;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-button {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 1rem 2.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: var(--transition-fluid);
-  letter-spacing: 0.05em;
-}
-
-.btn-primary {
-  background: var(--accent-primary);
-  color: #ffffff; /* Fixed missing text color */
-  border: none;
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(var(--accent-primary-rgb), 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--accent-primary);
-  border: 1px solid var(--accent-primary);
-}
-
-.btn-secondary:hover {
-  background: rgba(var(--accent-primary-rgb), 0.15);
-  transform: translateY(-3px);
-}
 
 /* ===== SHARED SECTION STYLES ===== */
 section {
@@ -261,7 +198,7 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
-  width: 100%;
+  width: 100%;  
   max-width: 1200px;
 }
 
@@ -568,4 +505,19 @@ footer {
   .section-header h2 { font-size: 2rem; }
   section { padding: 5rem 1rem; }
   .member-card { flex: 0 0 100%; }
+}
+/* Darkening the specific sections */ 
+#upcomingEvents, 
+.community{
+  /* Use a deep navy-black with 85% opacity to let particles peek through */
+  background-color: rgba(10, 10, 18, 0.85) !important;
+  
+  /* Modern glassmorphism effect */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* Ensure smooth transitions and padding */
+  padding: 100px 20px;
+  position: relative;
+  z-index: 1;
 }

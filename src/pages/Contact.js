@@ -1,7 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../css/Contact.css';
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    interest: '',
+    message: ''
+  });
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('Sending...');
+
+    try {
+      // REPLACE THIS URL with your Google Apps Script URL
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpiSVmmhFdRTZS1EbXuQV_z8x4oxAaSrAnURuef5WAfZhWC7ywc3OrPRiwM0IdhODD/exec';
+      
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+      });
+
+      setStatus('Message Sent Successfully!');
+      setFormData({ fullName: '', email: '', interest: '', message: '' }); // Reset form
+    } catch (error) {
+      setStatus('Error sending message. Please try again.');
+    }
+  };
+  
+  
   return (
     <section id="contact" className="contact-section">
       {/* Section Header */}
@@ -56,22 +85,36 @@ function Contact() {
 
         {/* RIGHT COLUMN: The Form */}
         <div className="contact-form-wrapper">
-          <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+          <form className="contact-form" onSubmit={handleSubmit}>
             
             <div className="form-row">
               <div className="form-group">
                 <label>Full Name</label>
-                <input type="text" placeholder="Your name" required />
+                <input 
+                type="text" 
+                value={formData.fullName}
+                onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                placeholder="Your name" required 
+              />
               </div>
               <div className="form-group">
                 <label>Email Address</label>
-                <input type="email" placeholder="your@email.com" required />
+                <input 
+                type="email" 
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                placeholder="your@email.com" required 
+              />
               </div>
             </div>
 
             <div className="form-group">
               <label>I'm interested in...</label>
-              <select required>
+              <select 
+              value={formData.interest}
+              onChange={(e) => setFormData({...formData, interest: e.target.value})}
+              required
+            >
                 <option value="" disabled selected>Select a purpose</option>
                 <option value="join">Joining the Community</option>
                 <option value="collaborate">Project Collaboration</option>
@@ -82,11 +125,16 @@ function Contact() {
 
             <div className="form-group">
               <label>Message</label>
-              <textarea rows="5" placeholder="Tell us about yourself or your proposal..." required></textarea>
+              <textarea 
+              rows="5" 
+              value={formData.message}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
+              placeholder="Tell us about yourself..." required
+            ></textarea>
             </div>
 
             <button type="submit" className="submit-btn">
-              Send Message <i className="fa fa-paper-plane"></i>
+              {status ? status : "Send Message"} <i className="fa fa-paper-plane"></i>
             </button>
             
           </form>

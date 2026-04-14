@@ -1,0 +1,161 @@
+/* ===== SPLASH SCREEN ===== */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #050507; /* Deep black/navy */
+  z-index: 9999; /* Keeps it on top of EVERYTHING */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* This class gets added by React when it's time to disappear */
+.splash-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-content {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.splash-brand {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  animation: pulseBrand 2s infinite alternate;
+}
+
+.splash-brand h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #ffffff;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+}
+
+.splash-brand span {
+  color: #FF2A6D; /* Your Synthwave Magenta */
+}
+
+.welcome-text h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.welcome-text h1 span {
+  /* Creating a smooth hot-pink gradient */
+  background: linear-gradient(to right, #ff7eb3, var(--accent-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-text p {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+button {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-fluid);
+  letter-spacing: 0.05em;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: #ffffff; /* Fixed missing text color */
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(var(--accent-primary-rgb), 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(var(--accent-primary-rgb), 0.15);
+  transform: translateY(-3px);
+}
+
+/* A tiny glowing loading bar */
+.loading-bar {
+  width: 100px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background: #FF2A6D;
+  box-shadow: 0 0 10px #FF2A6D;
+  animation: loadingSwipe 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingSwipe {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}
+
+@keyframes pulseBrand {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+/* Locks the splash screen to the very front of the browser */
+.splash-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-deep, #080d1a);
+  z-index: 9999; 
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* This class gets added by React when the timer finishes */
+.splash-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}

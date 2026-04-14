@@ -1,41 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import Lenis from "lenis";
-import ParticleCloud from "../ParticleCloud";
 import "../css/welcome.css";
 import brandLogo from "../Resources/logo.png";
 import MissionVision from "./MissionVision";
 import Hero from "./Hero";
 import Contact from "./Contact";
-
-import memberImage1 from "../Resources/image1.jpeg";
-import memberImage2 from "../Resources/image2.jpeg";
-import memberImage3 from "../Resources/image3.jpeg";
-import humanicon from "../Resources/human-icon.avif";
+// IMPORT DATA FROM YOUR NEW FILE
+import { events, upcomingEvents, members } from "../Resources/data"; 
 
 function Welcome() {
-  // 1. State to track when the 3D cloud animation finishes
-  const [isCloudReady, setIsCloudReady] = useState(false);
-
-  // 2. Coverflow State & Logic
   const scrollRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);  
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
     const container = scrollRef.current;
-    
-    // Find the exact center of the visible scroll area
     const centerPosition = container.scrollLeft + container.offsetWidth / 2;
-
     const cards = container.children;
+    
     let closestIndex = 0;
     let minDistance = Infinity;
 
-    // Loop through cards to find which one is closest to the center
     Array.from(cards).forEach((card, index) => {
       const cardCenter = card.offsetLeft + card.offsetWidth / 2;
       const distance = Math.abs(centerPosition - cardCenter);
-      
       if (distance < minDistance) {
         minDistance = distance;
         closestIndex = index;
@@ -45,16 +33,14 @@ function Welcome() {
     if (closestIndex !== activeIndex) setActiveIndex(closestIndex);
   };
 
-  // Trigger once on mount to set initial active card
   useEffect(() => {
     handleScroll();
   }, []);
 
-  // 3. Initialize Professional Smooth Scrolling on mount
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth, premium easing
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
@@ -68,159 +54,15 @@ function Welcome() {
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-
-    // Cleanup to prevent memory leaks if component unmounts
     return () => lenis.destroy(); 
   }, []);
-
-  const events = [
-    {
-      name: "Hackathon Night",
-      img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
-      desc: "24-hour coding competition for next-gen developers.",
-      date: "OCT 24, 2026"
-    },
-    {
-      name: "Web Dev Workshop",
-      img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
-      desc: "Master modern, fluid interfaces and frameworks.",
-      date: "NOV 12, 2026"
-    },
-    {
-      name: "AI Bootcamp",
-      img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop",
-      desc: "Deep dive into neural networks and machine learning.",
-      date: "DEC 05, 2026"
-    }
-  ];
-
-  const upcomingEvents = [
-    {
-      name: "Autonomous Hacks '26", 
-      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
-      desc: "Join our flagship 48-hour hackathon. Build innovative solutions, pitch to judges, and win exclusive tech prizes.",
-      date: "MAY 15, 2026"
-    },
-    {
-      name: "React & UI/UX Masterclass",
-      img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
-      desc: "Learn to build fluid, glassmorphism interfaces and high-performance components from industry experts.",
-      date: "JUN 02, 2026"
-    },
-    {
-      name: "Open Source Summit",
-      img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop",
-      desc: "Dive deep into open-source contributions. Learn how to navigate large codebases and make your first major PR.",
-      date: "JUL 10, 2026"
-    }
-  ];
-
-  const members = [
-    {
-      name: "Piyush Patel",
-      role: "Founder & Leader",
-      desc: "Crafting fluid, pixel-perfect experiences.",
-      img: memberImage2,
-      linkedin: "https://www.linkedin.com/in/piyush-patel1319/",
-      mail:"mailto:"
-    },
-    {
-      name: "Raj Soni",
-      role: "Team Lead",
-      desc: "Connecting top-tier talent globally.",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/raj-soni3300",
-      mail:"mailto:"
-    },
-    {
-      name: "Himesh Solanki",
-      role: "Developer",
-      desc: "Architecting the future of scalable code.",
-      img: memberImage1,
-      linkedin: "https://www.linkedin.com/in/himesh-s5847",
-      github:"https://github.com/Hunny-785951",
-      mail:"mailto:himeshs159587@gmail.com"
-    },
-    
-    {
-      name: "Neel Patel",
-      role: "Role",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/patel-neel-76767a250",
-      mail:"mailto:"
-    },
-    {
-      name: "Harsh Devre",
-      role: "Technical Lead",
-      desc: "Crafting fluid, pixel-perfect experiences.",
-      img: memberImage3,
-      linkedin:"https://www.linkedin.com/in/er-harsh-d-b416a227b",
-      mail:"mailto:"
-    },
-    {
-      name: "Mann Dosi",
-      role: "Core Team Member",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/mann-dosi-178767343",
-      mail:"mailto:",
-    },
-    {
-      name: "Rutva Pandya",
-      role: "Technical & Event Management",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/rutva-pandya-214492341",
-      mail:"mailto:"
-    },
-    {
-      name: "Jaimit Mokani",
-      role: "Role",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/jaimit-mokani-8872b43a3",
-      mail:"mailto:"
-    },
-    {
-      name: "Tanvi Parmar",
-      role: "Designer",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/tanvi-parmar-3433883a8",
-      mail:"mailto:"
-    },
-    {
-      name: "Mahi Patel",
-      role: "Designer",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/mahiii-patel-8659a4374/",
-      mail:"mailto:"
-    },
-    {
-      name: "Prince Patel",
-      role: "Social Media Manager",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/patelprince1/",
-      mail:"mailto:"
-    },
-  ];
 
   return (
     <div className="app">
       <div className="ambient-mesh"></div>
 
-      <head>
-        <img src={brandLogo} alt="Dream Coders Logo" className="brand-logo" />
-        <title>Dream Coders - Welcome</title>
-      </head>
-
       <header className="navbar-container">
         <nav className="navbar">
-        
-          
           <div className="brand">
             <img src={brandLogo} alt="Dream Coders Logo" className="brand-logo" />
             <h2>DREAM <span>CODERS</span></h2>
@@ -235,46 +77,12 @@ function Welcome() {
       </header>
 
       <main>
-        {/* --- HERO SECTION --- */}
-        <section id="home" className="welcome hero-section" style={{ position: 'relative', overflow: 'hidden' }}>
-          
-          <div className="hero-background" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-            <ParticleCloud onCloudReady={() => setIsCloudReady(true)} />
-          </div>
+        <div className="hero-section" id="home">
+          <Hero />
+        </div>
 
-          <div 
-            className="hero-content animated-reveal" 
-            style={{ 
-              position: 'relative', 
-              zIndex: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              pointerEvents: 'none', 
-              opacity: isCloudReady ? 1 : 0, 
-              transform: isCloudReady ? 'translateY(0px)' : 'translateY(30px)', 
-              transition: 'opacity 1.5s ease-out, transform 1.5s ease-out' 
-            }}
-          >
-             <div className="welcome-text" style={{ pointerEvents: 'auto' }}>
-                <div className="badge">v2.0 Next-Gen Platform</div>
-                <h1>Dream<br/><span>Coders</span></h1>
-                <p>Turning Dreams Into Impactful Code.</p>
-                <div className="hero-actions">
-                  <button className="btn-primary" onClick={() => document.getElementById("community").scrollIntoView({ behavior: "smooth" })}>Explore Community</button>
-                  <button className="btn-secondary" onClick={() => document.getElementById("upcomingEvents").scrollIntoView({ behavior: "smooth" })}>Upcoming Events</button>
-                </div>
-             </div>
-          </div>
-        </section>
-        
-         <Hero />
-        {/* ========================================== */}
-        {/* THE STICKY COSMIC ZONE                     */}
-        {/* ========================================== */}
         <div className="cosmic-zone" style={{ position: 'relative' }}>
           
-          {/* 1. The Sticky Background (Only rendered ONCE) */}
           <div style={{ position: 'sticky', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 0, overflow: 'hidden' }}>
             <div className="hero-bg-layer">
               <svg className="bg-waves" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -294,7 +102,6 @@ function Welcome() {
             </div>
           </div>
 
-          {/* 2. The Content Layer (Scrolls over the sticky background) */}
           <div style={{ position: 'relative', zIndex: 1, marginTop: '-100vh' }}>
             
             <MissionVision />
@@ -382,7 +189,7 @@ function Welcome() {
 
       {/* --- FOOTER --- */}
       <footer>
-        <div className="footer-content" id="contact">
+        <div className="footer-content">
           <h3>DREAM <span>CODERS</span></h3>
           <p>Elevating digital experiences.</p>
           <div className="footer-icons">
