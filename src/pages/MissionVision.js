@@ -35,7 +35,7 @@ function MissionVision() {
   return (
     <section id="purpose" className="purpose-section">
       {/* --- Header Area --- */}
-      <div className="purpose-header">
+      <div className="purpose-header" data-aos="fade-down">
         <span className="purpose-badge">OUR PURPOSE</span>
         <h2>Mission & <span>Vision</span></h2>
         <p>
@@ -46,8 +46,8 @@ function MissionVision() {
 
       {/* --- 3-Up Card Grid --- */}
       <div className="purpose-grid">
-        {cards.map((card) => (
-          <article className="purpose-card" key={card.id}>
+        {cards.map((card, index) => (
+          <article className="purpose-card" key={card.id} data-aos="flip-left" data-aos-delay={index * 150}>
             <div className="card-glow-border"></div>
             <div className="icon-wrapper">
               <i className={`fa ${card.icon}`}></i>
@@ -59,9 +59,9 @@ function MissionVision() {
       </div>
 
       {/* --- Footer Tags --- */}
-      <div className="purpose-tags">
+      <div className="purpose-tags" data-aos="fade-up" data-aos-delay="400">
         {tags.map((tag, index) => (
-          <div className="tag-pill" key={index}>
+          <div className="tag-pill" key={index} data-aos="zoom-in" data-aos-delay={500 + index * 50}>
             <i className={`fa ${tag.icon}`}></i>
             <span>{tag.label}</span>
           </div>

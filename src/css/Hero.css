@@ -54,25 +54,36 @@
 /* 4. The Stars (Drifting Animation) */
 .constellation-overlay {
   position: absolute;
-  inset: -100px; /* Stretch slightly larger than screen to hide edges */
+  inset: -100px;
+  /* Stretch slightly larger than screen to hide edges */
   z-index: 2;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ccircle cx='50' cy='50' r='1.5' fill='rgba(255,255,255,0.2)'/%3E%3Ccircle cx='180' cy='140' r='2' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='90' cy='220' r='1' fill='rgba(255,255,255,0.15)'/%3E%3Ccircle cx='320' cy='90' r='1.5' fill='rgba(255,255,255,0.2)'/%3E%3Ccircle cx='260' cy='280' r='2' fill='rgba(255,255,255,0.3)'/%3E%3Ccircle cx='380' cy='350' r='1' fill='rgba(255,255,255,0.15)'/%3E%3Cpath d='M50 50 L180 140 L90 220' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3Cpath d='M180 140 L320 90 L260 280' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3Cpath d='M260 280 L380 350' stroke='rgba(255,255,255,0.05)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
   background-size: 400px 400px;
   background-repeat: repeat;
   opacity: 0.8;
-  pointer-events: none; 
-  animation: starDrift 60s linear infinite; 
+  pointer-events: none;
+  animation: starDrift 60s linear infinite;
 }
 
 /* KEYFRAMES FOR BACKGROUND */
 @keyframes waveFlow {
-  0% { transform: scale(1.2) translate(40px, 15px); }
-  100% { transform: scale(1.2) translate(-40px, -15px); }
+  0% {
+    transform: scale(1.2) translate(40px, 15px);
+  }
+
+  100% {
+    transform: scale(1.2) translate(-40px, -15px);
+  }
 }
 
 @keyframes starDrift {
-  from { background-position: 0 0; }
-  to { background-position: 400px 400px; }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 400px 400px;
+  }
 }
 
 /* ========================================= */
@@ -184,7 +195,7 @@
 }
 
 .stat-block h3 {
-  color: #FF2A6D; 
+  color: #FF2A6D;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.2rem;
@@ -195,7 +206,7 @@
 }
 
 .stat-block p {
-  color:#ff7eb3;
+  color: #ff7eb3;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -216,10 +227,10 @@
 .ide-window {
   width: 100%;
   max-width: 500px;
-  background: #0d1117; 
+  background: #0d1117;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
   overflow: hidden;
   z-index: 2;
 }
@@ -242,9 +253,18 @@
   height: 12px;
   border-radius: 50%;
 }
-.mac-dot.close { background: #ff5f56; }
-.mac-dot.minimize { background: #ffbd2e; }
-.mac-dot.expand { background: #27c93f; }
+
+.mac-dot.close {
+  background: #ff5f56;
+}
+
+.mac-dot.minimize {
+  background: #ffbd2e;
+}
+
+.mac-dot.expand {
+  background: #27c93f;
+}
 
 .ide-title {
   flex: 1;
@@ -252,12 +272,13 @@
   color: #8b949e;
   font-size: 0.85rem;
   font-family: monospace;
-  margin-right: 48px; 
+  margin-right: 48px;
 }
 
 .ide-body {
   padding: 1.5rem;
   overflow-x: auto;
+  text-align: left;
 }
 
 .ide-body pre {
@@ -265,15 +286,29 @@
   font-family: 'Fira Code', 'Courier New', monospace;
   font-size: 0.9rem;
   line-height: 1.6;
-  color: #c9d1d9; 
+  color: #c9d1d9;
 }
 
 /* Syntax Highlighting */
-.syntax-keyword { color: #ff7b72; } 
-.syntax-class { color: #d2a8ff; }   
-.syntax-method { color: #d2a8ff; }  
-.syntax-arg { color: #79c0ff; }     
-.syntax-string { color: #a5d6ff; }  
+.syntax-keyword {
+  color: #ff7b72;
+}
+
+.syntax-class {
+  color: #d2a8ff;
+}
+
+.syntax-method {
+  color: #d2a8ff;
+}
+
+.syntax-arg {
+  color: #79c0ff;
+}
+
+.syntax-string {
+  color: #a5d6ff;
+}
 
 /* ========================================= */
 /* --- FLOATING BADGES --- */
@@ -293,7 +328,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   z-index: 3;
 }
 
@@ -310,9 +345,17 @@
 }
 
 @keyframes floatBadge {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* ========================================= */
@@ -324,22 +367,22 @@
     flex-direction: column;
     text-align: center;
   }
-  
+
   .dev-hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .hero-subtitle {
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .hero-stats-row {
     justify-content: center;
   }
-  
+
   .badge-bottom-left {
     left: 20px;
   }

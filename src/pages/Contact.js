@@ -34,7 +34,7 @@ function Contact() {
   return (
     <section id="contact" className="contact-section">
       {/* Section Header */}
-      <div className="section-header">
+      <div className="section-header" data-aos="fade-down">
         <span className="purpose-badge">GET INVOLVED</span>
         <h2>Contact & <span className="gradient-text">Collaborate</span></h2>
         <p>Ready to join, collaborate, or partner with us? We'd love to hear from you.</p>
@@ -43,7 +43,7 @@ function Contact() {
       <div className="contact-container">
         
         {/* LEFT COLUMN: Info & Links */}
-        <div className="contact-info">
+        <div className="contact-info" data-aos="fade-right" data-aos-duration="1000">
           <h3>Let's Build Together</h3>
           <p className="contact-desc">
             Whether you're a seasoned developer, a curious beginner, or an organization looking to partner — there's a place for you in Dream Coders.
@@ -84,7 +84,7 @@ function Contact() {
         </div>
 
         {/* RIGHT COLUMN: The Form */}
-        <div className="contact-form-wrapper">
+        <div className="contact-form-wrapper" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
           <form className="contact-form" onSubmit={handleSubmit}>
             
             <div className="form-row">
@@ -115,7 +115,7 @@ function Contact() {
               onChange={(e) => setFormData({...formData, interest: e.target.value})}
               required
             >
-                <option value="" disabled selected>Select a purpose</option>
+                <option value="" disabled>Select a purpose</option>
                 <option value="join">Joining the Community</option>
                 <option value="collaborate">Project Collaboration</option>
                 <option value="partner">Partnership/Sponsorship</option>

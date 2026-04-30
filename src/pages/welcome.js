@@ -7,12 +7,14 @@ import Hero from "./Hero";
 import Contact from "./Contact";
 // IMPORT DATA FROM YOUR NEW FILE
 import { events, upcomingEvents, members } from "../Resources/data"; 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Welcome() {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);  
 
-  const handleScroll = () => {
+  const handleScroll = React.useCallback(() => {
     if (!scrollRef.current) return;
     const container = scrollRef.current;
     const centerPosition = container.scrollLeft + container.offsetWidth / 2;
@@ -31,10 +33,19 @@ function Welcome() {
     });
 
     if (closestIndex !== activeIndex) setActiveIndex(closestIndex);
-  };
+  }, [activeIndex]);
 
   useEffect(() => {
     handleScroll();
+  }, [handleScroll]);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+      easing: 'ease-out-cubic',
+    });
   }, []);
 
   useEffect(() => {
@@ -107,15 +118,15 @@ function Welcome() {
             <MissionVision />
 
             <section id="upcomingEvents" className="upcomingEvents">
-              <div className="section-header">
+              <div className="section-header" data-aos="fade-up">
                 <h2>Upcoming Events</h2>
                 <p>Discover our next wave of innovation and learning.</p>
               </div>
               <div className="events-preview">
                 {upcomingEvents.map((upcomingEvent, index) => (
-                  <article className="card event-card" key={index}>
+                  <article className="card event-card" key={index} data-aos="zoom-in" data-aos-delay={index * 100}>
                     <div className="img-wrapper">
-                      <img src={upcomingEvent.img} alt={`Promotional image for ${upcomingEvent.name}`} loading="lazy"/>
+                      <img src={upcomingEvent.img} alt={`Promotion for ${upcomingEvent.name}`} loading="lazy"/>
                       <span className="event-date">{upcomingEvent.date}</span>
                     </div>
                     <div className="card-content">
@@ -130,15 +141,15 @@ function Welcome() {
             </section>
 
             <section id="events" className="events">
-              <div className="section-header">
+              <div className="section-header" data-aos="fade-up">
                 <h2>Events</h2>
                 <p>Immerse yourself in our cutting-edge sessions.</p>
               </div>
               <div className="card-container">
                 {events.map((event, index) => (
-                  <article className="card event-card" key={index}>
+                  <article className="card event-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                     <div className="img-wrapper">
-                      <img src={event.img} alt={`Promotional image for ${event.name}`} loading="lazy"/>
+                      <img src={event.img} alt={`Promotion for ${event.name}`} loading="lazy"/>
                       <span className="event-date">{event.date}</span>
                     </div>
                     <div className="card-content">
@@ -151,7 +162,7 @@ function Welcome() {
             </section>
 
             <section id="community" className="community">
-              <div className="section-header">
+              <div className="section-header" data-aos="fade-right">
                 <h2>Members</h2>
                 <p>Meet the minds behind the architecture.</p>
               </div>
@@ -194,7 +205,7 @@ function Welcome() {
           <p>Elevating digital experiences.</p>
           <div className="footer-icons">
             <a href="https://www.linkedin.com/company/dream-coderscommunity/" aria-label="Dream Coders LinkedIn"><i className="fa fa-linkedin"></i></a>
-            <a href="#" aria-label="Dream Coders GitHub"><i className="fa fa-github"></i></a>
+            <a href="https://github.com/dreamcoderscommunity" aria-label="Dream Coders GitHub"><i className="fa fa-github"></i></a>
             <a href="https://www.instagram.com/dreamcoderscommunity/" aria-label="Dream Coders Instagram"><i className="fa fa-instagram"></i></a>
           </div>
         </div>  
