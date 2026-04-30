@@ -229,7 +229,7 @@ function AnimatedScene({ onReady }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (onReady) onReady();
-    }, 4000);
+    }, 2000);
     return () => clearTimeout(timer);
   }, [onReady]);
 

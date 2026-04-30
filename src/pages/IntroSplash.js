@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useProgress } from '@react-three/drei';
 import ParticleCloud from '../ParticleCloud'; // Adjust path if needed
 import '../css/IntroSplash.css';
 
 function IntroSplash({ onComplete }) {
+  const { progress, active } = useProgress();
   // 1. Tracks when the cloud is done loading to trigger the text slide-up
   const [isCloudReady, setIsCloudReady] = useState(false);
   // 2. Tracks when to fade the entire screen to black
@@ -12,16 +14,16 @@ function IntroSplash({ onComplete }) {
   const handleCloudReady = () => {
     setIsCloudReady(true); // Triggers your text animation
 
-    // Hold the screen for 2.5 seconds so the user can see the effect
+    // Hold the screen for 1.5 seconds so the user can see the effect
     setTimeout(() => {
       setIsFadingOut(true); // Starts the CSS fade-out transition
 
       // Wait 1 second for the fade-out to finish, then unmount the component
       setTimeout(() => {
         onComplete();
-      }, 4000);
+      }, 3000);
 
-    }, 4500);
+    }, 3500);
   };
 
   return (
@@ -32,6 +34,30 @@ function IntroSplash({ onComplete }) {
         <div className="hero-background" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <ParticleCloud onCloudReady={handleCloudReady} />
         </div>
+
+        {/* Loading Bar Overlay */}
+        {(!isCloudReady) && (
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: 'none',
+            opacity: isCloudReady ? 0 : 1,
+            transition: 'opacity 0.5s ease'
+          }}>
+            <div className="splash-brand">
+              <h2>Dream<span>Coders</span></h2>
+            </div>
+            <div style={{ color: 'white', marginBottom: '10px', fontFamily: 'monospace', fontSize: '0.9rem', opacity: 0.8 }}>
+              {active ? `Loading Assets: ${Math.round(progress)}%` : 'Initializing...'}
+            </div>
+            <div className="loading-bar"></div>
+          </div>
+        )}
 
         <div
           className="hero-content animated-reveal"
