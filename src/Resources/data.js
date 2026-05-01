@@ -31,7 +31,7 @@ export const events = [
 // 3. Export the Upcoming Events Array
 export const upcomingEvents = [
   {
-    name: "Autonomous Hacks '26", 
+    name: "Autonomous Hacks '26",
     img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
     desc: "Join our flagship 48-hour hackathon. Build innovative solutions, pitch to judges, and win exclusive tech prizes.",
     date: "MAY 15, 2026"
@@ -52,94 +52,93 @@ export const upcomingEvents = [
 
 // 4. Export the Members Array
 export const members = [
-    {
-      name: "Piyush Patel",
-      role: "Founder & Leader",
-      desc: "Crafting fluid, pixel-perfect experiences.",
-      img: memberImage2,
-      linkedin: "https://www.linkedin.com/in/piyush-patel1319/",
-      mail:"mailto:"
-    },
-    {
-      name: "Raj Soni",
-      role: "Team Lead",
-      desc: "Connecting top-tier talent globally.",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/raj-soni3300",
-      mail:"mailto:"
-    },
-    {
-      name: "Himesh Solanki",
-      role: "Developer",
-      desc: "Architecting the future of scalable code.",
-      img: memberImage1,
-      linkedin: "https://www.linkedin.com/in/himesh-s5847",
-      github:"https://github.com/Hunny-785951",
-      mail:"mailto:himeshs159587@gmail.com"
-    },
-    
-    {
-      name: "Neel Patel",
-      role: "Role",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/patel-neel-76767a250",
-      mail:"mailto:"
-    },
-    {
-      name: "Harsh Devre",
-      role: "Technical Lead",
-      desc: "Crafting fluid, pixel-perfect experiences.",
-      img: memberImage3,
-      linkedin:"https://www.linkedin.com/in/er-harsh-d-b416a227b",
-      mail:"mailto:"
-    },
-    {
-      name: "Mann Dosi",
-      role: "Core Team Member",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/mann-dosi-178767343",
-      mail:"mailto:",
-    },
-    {
-      name: "Rutva Pandya",
-      role: "Technical & Event Management",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/rutva-pandya-214492341",
-      mail:"mailto:"
-    },
-    {
-      name: "Jaimit Mokani",
-      role: "Role",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/jaimit-mokani-8872b43a3",
-      mail:"mailto:"
-    },
-    {
-      name: "Tanvi Parmar",
-      role: "Designer",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/tanvi-parmar-3433883a8",
-      mail:"mailto:"
-    },
-    {
-      name: "Mahi Patel",
-      role: "Designer",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/mahiii-patel-8659a4374/",
-      mail:"mailto:"
-    },
-    {
-      name: "Prince Patel",
-      role: "Social Media Manager",
-      desc: "Tag Quote",
-      img: humanicon,
-      linkedin: "https://www.linkedin.com/in/patelprince1/",
-      mail:"mailto:"
-    },
-  ];
+  {
+    name: "Piyush Patel",
+    role: "Founder & Leader",
+    desc: "Crafting fluid, pixel-perfect experiences.",
+    img: memberImage2,
+    linkedin: "https://www.linkedin.com/in/piyush-patel1319/",
+    mail: "mailto:"
+  },
+  {
+    name: "Himesh Solanki",
+    role: "Developer",
+    desc: "Architecting the future of scalable code.",
+    img: memberImage1,
+    linkedin: "https://www.linkedin.com/in/himesh-s5847",
+    github: "https://github.com/Hunny-785951",
+    mail: "mailto:himeshs159587@gmail.com"
+  },
+  {
+    name: "Neel Patel",
+    role: "Role",
+    desc: "Tag Quote",
+    img: humanicon,
+    linkedin: "https://www.linkedin.com/in/patel-neel-76767a250",
+    mail: "mailto:"
+  },
+  {
+    name: "Harsh Devre",
+    role: "Technical Lead",
+    desc: "Crafting fluid, pixel-perfect experiences.",
+    img: memberImage3,
+    linkedin: "https://www.linkedin.com/in/er-harsh-d-b416a227b",
+    mail: "mailto:"
+  },
+  {
+    name: "Mann Dosi",
+    role: "Core Team Member",
+    desc: "Tag Quote",
+    img: humanicon,
+    linkedin: "https://www.linkedin.com/in/mann-dosi-178767343",
+    mail: "mailto:",
+  },
+  {
+    name: "Rutva Pandya",
+    role: "Technical & Event Management",
+    desc: "Tag Quote",
+    img: humanicon,
+    linkedin: "https://www.linkedin.com/in/rutva-pandya-214492341",
+    mail: "mailto:"
+  },
+  {
+    name: "Krunal Chauhan",
+    role: "Team Lead",
+    desc: "Connecting top-tier talent globally.",
+    img: humanicon,
+    linkedin: "https://www.linkedin.com/in/",
+    mail: "mailto:"
+  },
+  {
+    name: "Jaimit Mokani",
+    role: "Role",
+    desc: "Tag Quote",
+    img: humanicon,
+    linkedin: "https://www.linkedin.com/in/jaimit-mokani-8872b43a3",
+    mail: "mailto:"
+  },
+  {
+    name: "Tanvi Parmar",
+    role: "Designer",
+    desc: "Tag Quote",
+    img: humanicon,
+    linkedin: "https://www.linkedin.com/in/tanvi-parmar-3433883a8",
+    mail: "mailto:"
+  },
+  {
+    name: "Mahi Patel",
+    role: "Designer",
+    desc: "Tag Quote",
+    img: humanicon,
+    linkedin: "https://www.linkedin.com/in/mahiii-patel-8659a4374/",
+    mail: "mailto:"
+  },
+  {
+    name: "Prince Patel",
+    role: "Social Media Manager",
+    desc: "Tag Quote",
+    img: humanicon,
+    linkedin: "https://www.linkedin.com/in/patelprince1/",
+    mail: "mailto:"
+  },
+];
