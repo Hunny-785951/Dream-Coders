@@ -103,8 +103,8 @@ export const members = [
   },
   {
     name: "Krunal Chauhan",
-    role: "Team Lead",
-    desc: "Connecting top-tier talent globally.",
+    role: "Role",
+    desc: "Tag Quote",
     img: humanicon,
     linkedin: "https://www.linkedin.com/in/",
     mail: "mailto:"
