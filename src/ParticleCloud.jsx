@@ -91,7 +91,6 @@ function AmbientParticles() {
 
 // 2. The Structured .glb Brain Model
 function NeuralCloudModel({ url }) {
-  const customMaterialRef = useRef();
   const { nodes } = useGLTF(url);
 
   const geometry = useMemo(() => {

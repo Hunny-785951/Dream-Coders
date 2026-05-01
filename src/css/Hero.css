@@ -387,3 +387,27 @@
     left: 20px;
   }
 }
+
+@media (max-width: 650px) {
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+  }
+  .hero-stats-row {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .ide-window {
+    width: 95%;
+  }
+  .ide-body {
+    padding: 1rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-cta-group button {
+    width: 100%;
+    justify-content: center;
+  }
+}

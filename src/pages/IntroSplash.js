@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useProgress } from '@react-three/drei';
 import ParticleCloud from '../ParticleCloud'; // Adjust path if needed
 import '../css/IntroSplash.css';
@@ -10,25 +10,31 @@ function IntroSplash({ onComplete }) {
   // 2. Tracks when to fade the entire screen to black
   const [isFadingOut, setIsFadingOut] = useState(false);
 
-  // This replaces your inline onCloudReady function
+  const timer1 = useRef(null);
+  const timer2 = useRef(null);
+
   const handleCloudReady = () => {
-    setIsCloudReady(true); // Triggers your text animation
+    setIsCloudReady(true);
 
-    // Hold the screen for 1.5 seconds so the user can see the effect
-    setTimeout(() => {
-      setIsFadingOut(true); // Starts the CSS fade-out transition
+    timer1.current = setTimeout(() => {
+      setIsFadingOut(true);
 
-      // Wait 1 second for the fade-out to finish, then unmount the component
-      setTimeout(() => {
+      timer2.current = setTimeout(() => {
         onComplete();
       }, 3000);
 
     }, 3500);
   };
 
+  React.useEffect(() => {
+    return () => {
+      if (timer1.current) clearTimeout(timer1.current);
+      if (timer2.current) clearTimeout(timer2.current);
+    };
+  }, []);
+
   return (
     <div className={`splash-overlay ${isFadingOut ? 'fade-out' : ''}`}>
-      {/* YOUR EXACT CODE SNIPPET (Slightly adjusted to span full height) */}
       <section id="splash-home" className="welcome hero-section" style={{ position: 'relative', overflow: 'hidden', height: '100vh', width: '100vw' }}>
 
         <div className="hero-background" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
