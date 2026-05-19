@@ -1,8 +1,23 @@
 import React, { useState } from "react";
 import brandLogo from "../Resources/logo.png";
 
-function Navbar() {
+function Navbar({ onNavigate }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (e, page, hash) => {
+    if (onNavigate && page) {
+      e.preventDefault();
+      onNavigate(page);
+      if (hash) {
+        setTimeout(() => {
+          const element = document.querySelector(hash);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <header className="navbar-container">
@@ -12,10 +27,10 @@ function Navbar() {
           <h2>DREAM <span>CODERS</span></h2>
         </div>
         <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#community">Members</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#home" onClick={(e) => handleNavClick(e, 'welcome', '#home')}>Home</a></li>
+          <li><a href="#community" onClick={(e) => handleNavClick(e, 'welcome', '#community')}>Members</a></li>
+          <li><a href="#events" onClick={(e) => handleNavClick(e, 'events', null)}>All Events</a></li>
+          <li><a href="#contact" onClick={(e) => handleNavClick(e, 'welcome', '#contact')}>Contact</a></li>
         </ul>
 
         {/* MOBILE MENU BUTTON & POPOUT */}
@@ -42,19 +57,19 @@ function Navbar() {
           </button>
 
           <div className={`popout-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-            <a href="#home" onClick={() => setIsMobileMenuOpen(false)} style={{ '--i': 1 }}>
+            <a href="#home" onClick={(e) => { setIsMobileMenuOpen(false); handleNavClick(e, 'welcome', '#home'); }} style={{ '--i': 1 }}>
               <span className="popout-label">Home</span>
               <i className="fa fa-home"></i>
             </a>
-            <a href="#community" onClick={() => setIsMobileMenuOpen(false)} style={{ '--i': 2 }}>
+            <a href="#community" onClick={(e) => { setIsMobileMenuOpen(false); handleNavClick(e, 'welcome', '#community'); }} style={{ '--i': 2 }}>
               <span className="popout-label">Members</span>
               <i className="fa fa-users"></i>
             </a>
-            <a href="#events" onClick={() => setIsMobileMenuOpen(false)} style={{ '--i': 3 }}>
-              <span className="popout-label">Events</span>
+            <a href="#events" onClick={(e) => { setIsMobileMenuOpen(false); handleNavClick(e, 'events', null); }} style={{ '--i': 3 }}>
+              <span className="popout-label">All Events</span>
               <i className="fa fa-calendar"></i>
             </a>
-            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} style={{ '--i': 4 }}>
+            <a href="#contact" onClick={(e) => { setIsMobileMenuOpen(false); handleNavClick(e, 'welcome', '#contact'); }} style={{ '--i': 4 }}>
               <span className="popout-label">Contact</span>
               <i className="fa fa-envelope"></i>
             </a>

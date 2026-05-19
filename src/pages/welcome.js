@@ -13,7 +13,7 @@ import Footer from "./Footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-function Welcome() {
+function Welcome({ onNavigate }) {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -51,7 +51,7 @@ function Welcome() {
     <div className="app">
       <div className="ambient-mesh"></div>
 
-      <Navbar />
+      <Navbar onNavigate={onNavigate} />
 
       <main>
         <div className="hero-section" id="home">
