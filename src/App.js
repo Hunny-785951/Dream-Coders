@@ -15,8 +15,8 @@ function App() {
         <IntroSplash onComplete={() => setShowSplash(false)} />
       )}
 
-      {!showSplash && currentPage === 'welcome' && <Welcome onNavigate={setCurrentPage} />}
-      {!showSplash && currentPage === 'events' && <EventPage onNavigate={setCurrentPage} />}
+      {currentPage === 'welcome' && <Welcome onNavigate={setCurrentPage} />}
+      {currentPage === 'events' && <EventPage onNavigate={setCurrentPage} />}
     </div>
   );
 }
